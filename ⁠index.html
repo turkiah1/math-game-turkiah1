@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#14213d" />
+  <title>مغامرة الكسور العشرية — الصف السادس</title>
+  <style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Tahoma,Arial,sans-serif;background:#0e1730;color:#fff}body{overflow:hidden}button,select{font:inherit}.screen{display:none;min-height:100vh}.screen.active{display:flex}.title-card,.result-card{margin:auto;width:min(920px,92vw);padding:34px;border-radius:28px;background:linear-gradient(145deg,#1e2c55,#10182f);box-shadow:0 24px 70px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);text-align:center}.badge{display:inline-block;padding:8px 15px;border-radius:999px;background:#ffd166;color:#352400;font-weight:800}.title-card h1{font-size:clamp(32px,6vw,62px);margin:18px 0 8px}.subtitle{opacity:.82;font-size:18px}.lesson-select{margin:25px auto;max-width:600px;text-align:right}.lesson-select label{display:block;margin-bottom:8px;font-weight:700}.lesson-select select{width:100%;padding:14px;border-radius:14px;border:0;background:#fff;color:#17213d}.buttons-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}.primary,.secondary{border:0;border-radius:14px;padding:13px 24px;cursor:pointer;font-weight:800}.primary{background:#ffd166;color:#2b2105}.secondary{background:#33466f;color:#fff}.help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}.help-grid>div{background:rgba(255,255,255,.06);border-radius:16px;padding:14px;line-height:1.7}.hud{height:72px;display:flex;align-items:center;gap:10px;padding:8px 12px;background:#10182f;border-bottom:1px solid rgba(255,255,255,.1);z-index:5}.hud-item{background:#1b2850;border-radius:12px;padding:7px 10px;min-width:80px}.hud-item span{display:block;font-size:11px;opacity:.7}.hud-item b{display:block;font-size:14px}.hud-item:nth-child(3){flex:1}.sound-btn{border:0;background:#ffd166;color:#2b2105;border-radius:12px;padding:11px 14px;cursor:pointer;font-size:18px}.gameScreen{}.gameScreen #gameWrap{flex:1}.screen#gameScreen{flex-direction:column}#gameWrap{position:relative;flex:1;min-height:0;background:#7ec8f5}canvas{display:block;width:100%;height:100%;touch-action:none}.touch-controls{height:86px;display:flex;justify-content:center;align-items:center;gap:18px;background:#10182f}.touch{width:68px;height:58px;border:0;border-radius:18px;background:#263962;color:#fff;font-size:28px;font-weight:900;box-shadow:0 5px 0 #172442;touch-action:none}.touch:active{transform:translateY(3px);box-shadow:0 2px 0 #172442}.touch.jump{background:#7255b8}.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(7,12,28,.78);z-index:10;padding:18px}.hidden{display:none!important}.question-card,.mini-card{width:min(760px,94%);max-height:90%;overflow:auto;background:#fff;color:#17213d;border-radius:24px;padding:25px;box-shadow:0 25px 80px rgba(0,0,0,.5);text-align:right}.q-top{display:flex;justify-content:space-between;gap:10px;color:#6958a8;font-weight:800}.question-card h2{font-size:clamp(22px,4vw,34px);line-height:1.55;margin:20px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.answer{border:2px solid #d9def0;background:#f7f8fc;color:#17213d;padding:16px;border-radius:15px;cursor:pointer;text-align:right;font-size:20px;font-weight:700}.answer:disabled{cursor:default;opacity:.85}.q-message{min-height:26px;font-weight:800}.source-line{font-size:14px;color:#58617a;border-top:1px solid #e3e6ef;padding-top:12px}.stage-message{position:absolute;left:50%;top:25%;transform:translateX(-50%);background:#17213d;color:#fff;padding:14px 22px;border-radius:14px;font-weight:900;z-index:6}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0}.stat{background:rgba(255,255,255,.06);padding:18px;border-radius:16px}.stat b{font-size:30px;display:block;margin-top:6px}.source-note{opacity:.7;font-size:13px;margin-top:18px}@media(max-width:700px){.hud{height:auto;flex-wrap:wrap;padding:6px}.hud-item{min-width:70px}.hud-item:nth-child(3){order:10;flex-basis:100%}.help-grid{grid-template-columns:1fr}.title-card,.result-card{padding:22px}.answers{grid-template-columns:1fr}.answer{font-size:17px}.touch-controls{height:78px}.touch{width:62px;height:54px}.question-card{padding:19px}}
+
+.primary,.secondary,.sound-btn,.answer,.touch{ -webkit-tap-highlight-color: transparent; }
+button { -webkit-user-select:none; user-select:none; }
+@media (pointer: coarse){ .primary{min-height:52px;min-width:180px;font-size:18px} }
+</style>
+</head>
+<body>
+  <main id="app">
+    <section id="startScreen" class="screen active">
+      <div class="title-card">
+        <div class="badge">رياضيات • الصف السادس الابتدائي</div>
+        <h1>مغامرة الكسور العشرية</h1>
+        <p class="subtitle">لعبة منصات تعليمية أصلية مستوحاة من ألعاب المغامرات الكلاسيكية</p>
+        <div class="lesson-select">
+          <label for="lessonSelect">اختيار الدرس</label>
+          <select id="lessonSelect"><option value="lesson-3-3">3-3 — مقارنة الكسور العشرية وترتيبها</option></select>
+        </div>
+        <div class="buttons-row">
+          <button id="startBtn" class="primary" type="button">ابدأ اللعب</button>
+          <button id="soundStartBtn" class="secondary" type="button">🔊 الصوت: تشغيل</button>
+        </div>
+        <div class="help-grid">
+          <div><b>التحكم</b><br>◀ ▶ للحركة • ▲ للقفز<br>الهاتف: أزرار اللمس أسفل الشاشة</div>
+          <div><b>نظام اللعب</b><br>اجمع 5 ذهبيات ← يظهر سؤال<br>الإجابة الخاطئة تخصم روحًا وتعود لاحقًا</div>
+          <div><b>المصدر</b><br>كتاب الرياضيات للصف السادس<br>الصفحات المرفقة: 90–93</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <header class="hud">
+        <div class="hud-item"><span>المادة</span><b>رياضيات</b></div>
+        <div class="hud-item"><span>الدرس</span><b>3-3</b></div>
+        <div class="hud-item"><span>المرحلة</span><b>مقارنة الكسور العشرية وترتيبها</b></div>
+        <div class="hud-item"><span>❤️ الأرواح</span><b id="lives">3</b></div>
+        <div class="hud-item"><span>🪙 الذهب</span><b id="coins">0</b></div>
+        <div class="hud-item"><span>⭐ النقاط</span><b id="score">0</b></div>
+        <button id="soundBtn" class="sound-btn" aria-label="الصوت">🔊</button>
+      </header>
+      <div id="gameWrap">
+        <canvas id="game" aria-label="لعبة منصات تعليمية"></canvas>
+        <div id="questionOverlay" class="overlay hidden">
+          <div class="question-card">
+            <div class="q-top"><span id="qType">اختيار من متعدد</span><span id="qCounter"></span></div>
+            <h2 id="questionText"></h2>
+            <div id="answers" class="answers"></div>
+            <p id="qMessage" class="q-message"></p>
+            <div id="sourceLine" class="source-line"></div>
+          </div>
+        </div>
+        <div id="pauseOverlay" class="overlay hidden">
+          <div class="mini-card"><h2>توقّف مؤقتًا</h2><button id="resumeBtn" class="primary">متابعة</button></div>
+        </div>
+        <div id="stageMessage" class="stage-message hidden"></div>
+      </div>
+      <div class="touch-controls" aria-label="أزرار التحكم باللمس">
+        <button data-key="left" class="touch">◀</button>
+        <button data-key="right" class="touch">▶</button>
+        <button data-key="jump" class="touch jump">▲</button>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="result-card">
+        <div class="badge">نتيجة المرحلة</div>
+        <h1 id="resultTitle">أحسنت!</h1>
+        <div id="resultGrid" class="result-grid"></div>
+        <div class="buttons-row">
+          <button id="retryBtn" class="primary">إعادة المرحلة</button>
+          <button id="backBtn" class="secondary">العودة لقائمة الدروس</button>
+        </div>
+        <p class="source-note">المحتوى التعليمي في هذه النسخة مأخوذ فقط من الصفحات المرفقة 90–93.</p>
+      </div>
+    </section>
+  </main>
+  <script>
+// بنك الأسئلة — المصدر الوحيد: الصفحات المرفقة من كتاب الطالب، 90–93.
+// لا توجد بيانات خارجية أو أسئلة من الإنترنت.
+const QUESTION_BANKS = {
+  "lesson-3-3": [
+    {id:"33-001",type:"mcq",text:"أي العددين أكبر؟ ٢,٦٤ أم ٢,٦٣؟",options:["٢,٦٤","٢,٦٣","متساويان","لا يمكن المقارنة"],answer:0,page:[90,90]},
+    {id:"33-002",type:"mcq",text:"قارن: ٢,٧٨ ☐ ٢,٩٠",options:["<",">","=","لا يمكن المقارنة"],answer:0,page:[90,90]},
+    {id:"33-003",type:"mcq",text:"ما الكسر العشري المكافئ لـ ٠,٨؟",options:["٠,٠٨","٠,٨٠","٠,٨٨","٨,٠"],answer:1,page:[91,91]},
+    {id:"33-004",type:"tf",text:"٠,٨ و٠,٨٠ كسران عشريان متكافئان.",options:["صح","خطأ"],answer:0,page:[91,91]},
+    {id:"33-005",type:"mcq",text:"أي عدد أكبر: ١٥,٠١ أم ١٥,١٠؟",options:["١٥,٠١","١٥,١٠","متساويان","لا يمكن المقارنة"],answer:1,page:[91,91]},
+    {id:"33-006",type:"mcq",text:"أي ترتيب تصاعدي صحيح للأعداد: ١٤,٩٥ ، ١٥,٠٠ ، ١٥,٠١ ، ١٥,٨؟",options:["١٤,٩٥ ، ١٥,٠٠ ، ١٥,٠١ ، ١٥,٨","١٥,٨ ، ١٥,٠١ ، ١٥,٠٠ ، ١٤,٩٥","١٥,٠٠ ، ١٤,٩٥ ، ١٥,٠١ ، ١٥,٨","١٤,٩٥ ، ١٥,٠١ ، ١٥,٠٠ ، ١٥,٨"],answer:0,page:[91,91]},
+    {id:"33-007",type:"mcq",text:"رتّب تصاعديًا: ٣٥,٠٦ ، ٣٥,٧ ، ٣٥,٥ ، ٣٥,٨٤٩",options:["٣٥,٠٦ ، ٣٥,٥ ، ٣٥,٧ ، ٣٥,٨٤٩","٣٥,٨٤٩ ، ٣٥,٧ ، ٣٥,٥ ، ٣٥,٠٦","٣٥,٥ ، ٣٥,٠٦ ، ٣٥,٧ ، ٣٥,٨٤٩","٣٥,٠٦ ، ٣٥,٧ ، ٣٥,٥ ، ٣٥,٨٤٩"],answer:0,page:[91,91]},
+    {id:"33-008",type:"mcq",text:"قارن: ٠,٥ ☐ ٠,٤",options:["<",">","=","لا يمكن المقارنة"],answer:1,page:[91,92]},
+    {id:"33-009",type:"mcq",text:"قارن: ٢,٠٧ ☐ ٢,٧",options:["<",">","=","لا يمكن المقارنة"],answer:0,page:[91,92]},
+    {id:"33-010",type:"tf",text:"٢٥,٠ و٢٥,٠ متساويان.",options:["صح","خطأ"],answer:0,page:[92,92]},
+    {id:"33-011",type:"mcq",text:"قارن: ٠,٣٥ ☐ ٠,٣٨",options:["<",">","=","لا يمكن المقارنة"],answer:0,page:[92,92]},
+    {id:"33-012",type:"tf",text:"٣,٣ يساوي ٣,٣٠.",options:["صح","خطأ"],answer:0,page:[92,92]},
+    {id:"33-013",type:"mcq",text:"قارن: ٠,٨ ☐ ٠,٠٨",options:["<",">","=","لا يمكن المقارنة"],answer:1,page:[92,92]},
+    {id:"33-014",type:"mcq",text:"قارن: ٥,١٥ ☐ ٥,٥١",options:["<",">","=","لا يمكن المقارنة"],answer:0,page:[92,92]},
+    {id:"33-015",type:"mcq",text:"قارن: ٩,٠٣٠ ☐ ٩,٠٠٣",options:["<",">","=","لا يمكن المقارنة"],answer:1,page:[92,92]},
+    {id:"33-016",type:"mcq",text:"قارن: ٧,٠١١ ☐ ٧,١٠٧",options:["<",">","=","لا يمكن المقارنة"],answer:0,page:[92,92]},
+    {id:"33-017",type:"mcq",text:"قارن: ٣,٣٠ ☐ ٣,٣",options:["<",">","=","لا يمكن المقارنة"],answer:2,page:[92,92]},
+    {id:"33-018",type:"mcq",text:"في بيانات سباق، الأزمنة بالثانية هي: ١٤,٣١ و١٣,٨٤ و١٣,٩٧ و١٣,٧٩. من يصل أولًا إذا كان الزمن الأصغر هو الأفضل؟",options:["خالد","تركي","عثمان","أحمد"],answer:3,page:[93,93]},
+    {id:"33-019",type:"mcq",text:"أي ترتيب يمثل وصول المتسابقين إلى خط النهاية من الأول إلى الأخير؟",options:["خالد، تركي، عثمان، أحمد","أحمد، عثمان، تركي، خالد","خالد، عثمان، تركي، أحمد","أحمد، تركي، عثمان، خالد"],answer:1,page:[93,93]},
+    {id:"33-020",type:"mcq",text:"أي كسر عشري أقرب إلى الصفر؟ ١,٠٠٥ أم ٠,٨٨١ أم ٠,٥٩٩ أم ٠,٧٣",options:["١,٠٠٥","٠,٨٨١","٠,٥٩٩","٠,٧٣"],answer:2,page:[93,93]},
+    {id:"33-021",type:"mcq",text:"أي عدد يقع بين ٢,٣٥ و٣,٠٦؟",options:["٢,٣١٥","٢,٥٧١","٣,٠٨٤","٣,٢٦٨"],answer:1,page:[93,93]},
+    {id:"33-022",type:"mcq",text:"إذا كانت درجات الحرارة: ٤٠,٥ و٤٠,٥ و٤٠,٥، فأي وصف يناسب القيم؟",options:["كلها متساوية","الأولى أكبر","الثانية أكبر","الثالثة أكبر"],answer:0,page:[93,93]},
+    {id:"33-023",type:"mcq",text:"أي عبارة تشرح فائدة إضافة أصفار إلى يمين آخر منزلة عشرية؟",options:["تغيّر قيمة الكسر دائمًا","لا تغيّر قيمة الكسر وتساعد في ترتيب الكسور العشرية","تحوّل الكسر إلى عدد صحيح","تمنع المقارنة بين الكسور"],answer:1,page:[91,91]},
+    {id:"33-024",type:"mcq",text:"عند مقارنة كسرين عشريين، ما الخطوة المفيدة إذا اختلف عدد المنازل العشرية؟",options:["إضافة أصفار إلى يمين آخر منزلة حتى يتساوى عدد المنازل","حذف الجزء العشري","تغيير الفاصلة","تقريب العددين دائمًا"],answer:0,page:[91,91]},
+    {id:"33-025",type:"tf",text:"يمكن استعمال خط الأعداد للتحقق من صحة ترتيب الكسور العشرية.",options:["صح","خطأ"],answer:0,page:[90,91]},
+    {id:"33-026",type:"mcq",text:"في ترتيب الكسور العشرية تصاعديًا، يبدأ الترتيب بالعدد...",options:["الأكبر","الأصغر","الأكثر منازل عشرية","الذي يحتوي على صفر"],answer:1,page:[91,92]},
+    {id:"33-027",type:"mcq",text:"في ترتيب الكسور العشرية تنازليًا، يبدأ الترتيب بالعدد...",options:["الأصغر","الأكبر","الأقرب إلى الصفر فقط","الأقل من ١"],answer:1,page:[91,92]},
+    {id:"33-028",type:"mcq",text:"ما العلاقة الصحيحة بين ٠,٨ و٠,٨٠؟",options:["٠,٨ < ٠,٨٠","٠,٨ > ٠,٨٠","٠,٨ = ٠,٨٠","لا علاقة بينهما"],answer:2,page:[91,91]},
+    {id:"33-029",type:"mcq",text:"ما العلاقة الصحيحة بين ٢٥,٥ و٢٥,٥٠؟",options:["<",">","=","لا يمكن المقارنة"],answer:2,page:[92,92]},
+    {id:"33-030",type:"tf",text:"عند ترتيب أعداد عشرية تصاعديًا، يمكن استخدام القيمة المنزلية للمقارنة بين الأعداد.",options:["صح","خطأ"],answer:0,page:[90,91]}
+  ]
+};
+
+</script>
+<script>
+(() => {
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  const startScreen = document.getElementById('startScreen');
+  const gameScreen = document.getElementById('gameScreen');
+  const resultScreen = document.getElementById('resultScreen');
+  const qOverlay = document.getElementById('questionOverlay');
+  const pauseOverlay = document.getElementById('pauseOverlay');
+  const questionText = document.getElementById('questionText');
+  const answersEl = document.getElementById('answers');
+  const qType = document.getElementById('qType');
+  const qCounter = document.getElementById('qCounter');
+  const qMessage = document.getElementById('qMessage');
+  const sourceLine = document.getElementById('sourceLine');
+  const stageMessage = document.getElementById('stageMessage');
+  const lessonId = 'lesson-3-3';
+  const BANK = QUESTION_BANKS[lessonId];
+  const SAVE_KEY = 'math6_decimal_adventure_v1';
+
+  let W=960,H=540, dpr=1, last=0, running=false, paused=false, questionOpen=false;
+  let lives=3, coins=0, score=0, answered=0, correct=0, wrong=0;
+  let nextCoinQuestion=5, questionIndex=0, questionSession=[];
+  let pendingQuestions=[];
+  let recentQuestionIds=[];
+  let audioOn=true, audioCtx=null;
+  let input={left:false,right:false,jump:false};
+  let cameraX=0;
+  const world={width:6400,groundY:430};
+  const player={x:120,y:340,w:34,h:48,vx:0,vy:0,onGround:false,spawnX:120,spawnY:340,inv:0};
+  const checkpoints=[{x:120},{x:1450},{x:2900},{x:4450}];
+  let checkpointIndex=0;
+  const platforms=[
+    [0,430,900,40],[1030,430,760,40],[1900,430,800,40],[2810,430,690,40],[3610,430,800,40],[4470,430,850,40],[5380,430,1020,40],
+    [360,330,170,18],[650,270,160,18],[1120,335,180,18],[1420,285,180,18],[1680,340,150,18],[2070,320,190,18],[2380,260,180,18],[2650,335,180,18],
+    [3030,300,170,18],[3280,240,180,18],[3720,315,180,18],[4010,255,180,18],[4320,335,160,18],[4740,300,190,18],[5070,240,190,18],[5520,310,180,18],[5860,260,180,18]
+  ];
+  const pits=[[900,1030],[1790,1900],[2700,2810],[3500,3610],[4410,4470],[5320,5380]];
+  const enemies=[
+    {x:760,y:390,w:32,h:32,min:620,max:860,vx:65},{x:1580,y:390,w:32,h:32,min:1370,max:1740,vx:-70},{x:2310,y:390,w:32,h:32,min:1980,max:2650,vx:75},{x:3370,y:390,w:32,h:32,min:2870,max:3480,vx:-80},{x:4100,y:390,w:32,h:32,min:3650,max:4380,vx:70},{x:4930,y:390,w:32,h:32,min:4500,max:5300,vx:-85},{x:5710,y:390,w:32,h:32,min:5400,max:6320,vx:80}
+  ];
+  const coinsWorld=[];
+  for(let x=220;x<6300;x+=190){
+    const y= x%380===0 ? 300 : 365;
+    coinsWorld.push({x,y,r:12,collected:false});
+  }
+  const hazards=[[1250,397,48,33],[2460,397,48,33],[3890,397,48,33],[5180,397,48,33]];
+
+  function resize(){
+    const rect=canvas.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); W=Math.max(320,rect.width); H=Math.max(260,rect.height);
+    canvas.width=Math.floor(W*dpr); canvas.height=Math.floor(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  addEventListener('resize',resize); resize();
+
+  function showScreen(el){[startScreen,gameScreen,resultScreen].forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+  function beep(freq,duration=.08,type='sine'){
+    if(!audioOn) return;
+    try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)(); const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.045,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+duration)}catch{}
+  }
+  function toggleSound(){audioOn=!audioOn;document.getElementById('soundBtn').textContent=audioOn?'🔊':'🔇';document.getElementById('soundStartBtn').textContent=audioOn?'🔊 الصوت: تشغيل':'🔇 الصوت: كتم'}
+  document.getElementById('soundBtn').onclick=toggleSound; document.getElementById('soundStartBtn').onclick=toggleSound;
+
+  function resetQuestionSession(){
+    questionSession=BANK.map(q=>({id:q.id,state:'new',seen:0,wrong:0,readyAfter:0})); pendingQuestions=[]; recentQuestionIds=[]; questionIndex=0;
+  }
+  function resetStage(){
+    lives=3;coins=0;score=0;answered=0;correct=0;wrong=0;nextCoinQuestion=5;checkpointIndex=0;player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;player.inv=0;cameraX=0;
+    coinsWorld.forEach(c=>c.collected=false); resetQuestionSession(); enemies.forEach((e,i)=>e.x=[760,1580,2310,3370,4100,4930,5710][i]); updateHUD();
+  }
+  function startGame(){resetStage();showScreen(gameScreen);running=true;paused=false;last=performance.now(); requestAnimationFrame(loop); saveProgress();}
+  document.getElementById('startBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    startGame();
+  });
+  document.getElementById('startBtn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    startGame();
+  }, {passive:false});
+  document.getElementById('retryBtn').onclick=()=>{startGame()};
+  document.getElementById('backBtn').onclick=()=>{running=false;showScreen(startScreen)};
+  document.getElementById('resumeBtn').onclick=()=>{paused=false;pauseOverlay.classList.add('hidden');last=performance.now()};
+
+  function updateHUD(){document.getElementById('lives').textContent=lives;document.getElementById('coins').textContent=coins;document.getElementById('score').textContent=score}
+  function saveProgress(){
+    const old=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}');
+    old.lastStage=lessonId; old.highScore=Math.max(old.highScore||0,score); old.bestCoins=Math.max(old.bestCoins||0,coins); localStorage.setItem(SAVE_KEY,JSON.stringify(old));
+  }
+
+  function bindInput(){
+    addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')input.left=true;if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')input.right=true;if(e.key==='ArrowUp'||e.key===' '||e.key.toLowerCase()==='w'){input.jump=true;e.preventDefault()}if(e.key==='Escape'&&!questionOpen){paused=!paused;pauseOverlay.classList.toggle('hidden',!paused)}});
+    addEventListener('keyup',e=>{if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')input.left=false;if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')input.right=false;if(e.key==='ArrowUp'||e.key===' '||e.key.toLowerCase()==='w')input.jump=false});
+    document.querySelectorAll('.touch').forEach(b=>{const k=b.dataset.key; const on=e=>{e.preventDefault();input[k]=true};const off=e=>{e.preventDefault();input[k]=false};b.addEventListener('pointerdown',on);b.addEventListener('pointerup',off);b.addEventListener('pointercancel',off);b.addEventListener('pointerleave',off)});
+  } bindInput();
+
+  function rectsOverlap(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
+  function groundAt(x,y,vy){
+    let best=null; for(const p of platforms){if(x+p[2]>0&&x<p[0]+p[2]&&player.y+player.h<=p[1]+20&&player.y+player.h+vy*.02>=p[1]){if(!best||p[1]<best[1])best=p}}
+    return best;
+  }
+  function loseLife(reason){
+    if(player.inv>0||questionOpen)return;
+    lives--; updateHUD(); beep(120,.2,'sawtooth');
+    if(lives<=0){finishStage();return}
+    const cp=checkpoints[checkpointIndex]||checkpoints[0]; player.x=cp.x;player.y=player.spawnY;player.vx=0;player.vy=0;player.inv=2;
+    askQuestion('life-loss');
+  }
+
+  function update(dt){
+    if(!running||paused||questionOpen)return;
+    const accel=820,max=310,fric=0.82;
+    if(input.left)player.vx-=accel*dt;if(input.right)player.vx+=accel*dt;if(!input.left&&!input.right)player.vx*=Math.pow(fric,dt*60);
+    player.vx=Math.max(-max,Math.min(max,player.vx));
+    if(input.jump&&player.onGround){player.vy=-650;player.onGround=false;beep(520,.07,'triangle');input.jump=false}
+    player.vy+=1500*dt; player.x+=player.vx*dt; player.y+=player.vy*dt;
+    if(player.x<0)player.x=0; if(player.x>world.width-player.w)player.x=world.width-player.w;
+    player.onGround=false;
+    for(const p of platforms){const pb={x:p[0],y:p[1],w:p[2],h:p[3]}; if(rectsOverlap(player,pb)&&player.vy>=0&&player.y+player.h-player.vy*dt<=pb.y+8){player.y=pb.y-player.h;player.vy=0;player.onGround=true}}
+    if(player.y>H+100){loseLife('pit');return}
+    for(const h of hazards){const hb={x:h[0],y:h[1],w:h[2],h:h[3]};if(rectsOverlap(player,hb)){loseLife('hazard');return}}
+    for(const e of enemies){e.x+=e.vx*dt;if(e.x<e.min||e.x>e.max){e.vx*=-1}const eb={x:e.x,y:e.y,w:e.w,h:e.h};if(rectsOverlap(player,eb))loseLife('enemy')}
+    for(const c of coinsWorld){if(!c.collected&&Math.hypot((player.x+player.w/2)-c.x,(player.y+player.h/2)-c.y)<30){c.collected=true;coins++;score+=10;beep(880,.07,'square');updateHUD();if(coins>=nextCoinQuestion){nextCoinQuestion+=5;askQuestion('coin')}}}
+    for(let i=0;i<checkpoints.length;i++){if(player.x>checkpoints[i].x)checkpointIndex=i}
+    if(player.x>world.width-160){finishStage();return}
+    cameraX=Math.max(0,Math.min(world.width-W,player.x-W*.35));
+    if(player.inv>0)player.inv-=dt;
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H); drawSky(); ctx.save();ctx.translate(-cameraX,0);
+    drawWorld(); drawPlayer(); ctx.restore();
+  }
+  function drawSky(){
+    const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#76c8f3');g.addColorStop(1,'#d7f2ff');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='rgba(255,255,255,.75)';for(let i=0;i<9;i++){const x=((i*270-cameraX*.15)% (W+330))-100,y=55+(i%3)*55;cloud(x,y,70+(i%2)*25)}
+  }
+  function cloud(x,y,s){ctx.beginPath();ctx.arc(x,y,s*.25,0,Math.PI*2);ctx.arc(x+s*.22,y-s*.14,s*.32,0,Math.PI*2);ctx.arc(x+s*.48,y,s*.25,0,Math.PI*2);ctx.fill()}
+  function drawWorld(){
+    // distant hills
+    ctx.fillStyle='#75a76c';ctx.beginPath();ctx.moveTo(cameraX,430);for(let x=cameraX;x<cameraX+W+200;x+=160)ctx.quadraticCurveTo(x+80,310-(x/160%3)*25,x+160,430);ctx.lineTo(cameraX+W+200,H);ctx.lineTo(cameraX,H);ctx.fill();
+    for(const p of platforms){ctx.fillStyle='#5b3a27';ctx.fillRect(p[0],p[1],p[2],p[3]);ctx.fillStyle='#65b85d';ctx.fillRect(p[0],p[1],p[2],7)}
+    for(const pit of pits){ctx.fillStyle='#1a2040';ctx.fillRect(pit[0],430,pit[1]-pit[0],110);ctx.fillStyle='#ef476f';for(let x=pit[0]+8;x<pit[1];x+=22){ctx.beginPath();ctx.moveTo(x,430);ctx.lineTo(x+9,447);ctx.lineTo(x+18,430);ctx.fill()}}
+    for(const h of hazards){ctx.fillStyle='#8e2a45';ctx.fillRect(h[0],h[1]+15,h[2],18);ctx.fillStyle='#ffd166';for(let x=h[0]+6;x<h[0]+h[2]-4;x+=13){ctx.beginPath();ctx.moveTo(x,h[1]+15);ctx.lineTo(x+6,h[1]);ctx.lineTo(x+12,h[1]+15);ctx.fill()}}
+    for(const c of coinsWorld){if(c.collected)continue;ctx.fillStyle='#ffd166';ctx.beginPath();ctx.arc(c.x,c.y,c.r,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#b47a00';ctx.lineWidth=3;ctx.stroke();ctx.fillStyle='#fff2a6';ctx.fillRect(c.x-3,c.y-7,4,10)}
+    for(let i=0;i<checkpoints.length;i++){const x=checkpoints[i].x+25;ctx.fillStyle='#25365f';ctx.fillRect(x,350,6,80);ctx.fillStyle=i<=checkpointIndex?'#06d6a0':'#9aa5c1';ctx.beginPath();ctx.moveTo(x+6,350);ctx.lineTo(x+50,365);ctx.lineTo(x+6,380);ctx.closePath();ctx.fill()}
+    for(const e of enemies){ctx.fillStyle='#7b4ab4';ctx.beginPath();ctx.roundRect(e.x,e.y,e.w,e.h,9);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(e.x+9,e.y+10,5,0,Math.PI*2);ctx.arc(e.x+23,e.y+10,5,0,Math.PI*2);ctx.fill();ctx.fillStyle='#1b1f36';ctx.beginPath();ctx.arc(e.x+9,e.y+10,2,0,Math.PI*2);ctx.arc(e.x+23,e.y+10,2,0,Math.PI*2);ctx.fill()}
+    // finish portal
+    const fx=world.width-110;ctx.fillStyle='#6d4bc3';ctx.fillRect(fx,290,12,140);ctx.fillStyle='#ffd166';ctx.beginPath();ctx.arc(fx+45,305,34,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.font='bold 16px Tahoma';ctx.fillText('نهاية',fx+18,310);
+  }
+  function drawPlayer(){if(player.inv>0&&Math.floor(player.inv*10)%2===0)return;ctx.fillStyle='#ff6b6b';ctx.beginPath();ctx.roundRect(player.x,player.y,player.w,player.h,10);ctx.fill();ctx.fillStyle='#2b3a67';ctx.fillRect(player.x+5,player.y+30,24,15);ctx.fillStyle='#ffe0bd';ctx.beginPath();ctx.arc(player.x+17,player.y+13,10,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(player.x+12,player.y+11,3,0,Math.PI*2);ctx.arc(player.x+22,player.y+11,3,0,Math.PI*2);ctx.fill()}
+
+  function chooseQuestion(){
+    const n=answered+1;
+    // Release due wrong questions after 3–5 other questions. Use a deterministic pseudo-random delay 3–5.
+    const due=pendingQuestions.filter(q=>q.readyAfter<=n);
+    if(due.length){return due[Math.floor(Math.random()*due.length)]}
+    let fresh=questionSession.filter(q=>q.state==='new' && !recentQuestionIds.includes(q.id));
+    if(!fresh.length) fresh=questionSession.filter(q=>q.state==='new');
+    if(!fresh.length) fresh=questionSession.filter(q=>q.state==='wrong' && q.readyAfter<=n);
+    if(!fresh.length) return null;
+    // Avoid repeating the same type when possible.
+    const lastType=questionSession.find(q=>q.id===recentQuestionIds[recentQuestionIds.length-1])?.type;
+    const candidates=fresh.filter(s=>{const orig=BANK.find(q=>q.id===s.id);return orig.type!==lastType}) ;
+    const state=candidates.length?candidates:fresh;
+    return state[Math.floor(Math.random()*state.length)];
+  }
+  function askQuestion(trigger){
+    if(questionOpen||!running)return;
+    const state=chooseQuestion(); if(!state){return}
+    const q=BANK.find(x=>x.id===state.id); if(!q)return;
+    questionOpen=true; questionIndex=state.id; paused=true;
+    state.seen++; recentQuestionIds.push(q.id); if(recentQuestionIds.length>4)recentQuestionIds.shift();
+    qType.textContent=q.type==='mcq'?'اختيار من متعدد':'صح أو خطأ'; qCounter.textContent=`سؤال ${answered+1}`; questionText.textContent=q.text;
+    sourceLine.textContent=`المصدر: كتاب الرياضيات — من صفحة ${q.page[0]} إلى صفحة ${q.page[1]}`; qMessage.textContent=''; answersEl.innerHTML='';
+    q.options.forEach((opt,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=opt;b.onclick=()=>answerQuestion(q,state,i);answersEl.appendChild(b)});
+    qOverlay.classList.remove('hidden');
+    beep(660,.09,'triangle');
+  }
+  function answerQuestion(q,state,selected){
+    const buttons=[...answersEl.querySelectorAll('button')];buttons.forEach(b=>b.disabled=true);
+    answered++; const isCorrect=selected===q.answer;
+    if(isCorrect){correct++;score+=25;state.state='correct';state.readyAfter=Infinity;pendingQuestions=pendingQuestions.filter(x=>x.id!==q.id);qMessage.textContent='إجابة صحيحة!';beep(1040,.12,'triangle');}
+    else{wrong++;lives--;state.state='wrong';state.wrong++;const delay=3+Math.floor(Math.random()*3);state.readyAfter=answered+delay;if(!pendingQuestions.includes(state))pendingQuestions.push(state);qMessage.textContent='حاول مرة أخرى عندما يظهر السؤال لاحقًا.';beep(180,.14,'sawtooth');}
+    updateHUD();saveProgress();
+    setTimeout(()=>{qOverlay.classList.add('hidden');questionOpen=false;paused=false; if(lives<=0)finishStage();},650);
+  }
+  function finishStage(){
+    running=false;questionOpen=false;paused=false;qOverlay.classList.add('hidden');
+    const pct=answered?Math.round(correct/answered*100):0;
+    document.getElementById('resultTitle').textContent=lives>0?'أحسنت! وصلت إلى نهاية المرحلة':'انتهت المحاولة';
+    document.getElementById('resultGrid').innerHTML=`<div class="stat">🪙 الذهب<b>${coins}</b></div><div class="stat">⭐ النقاط<b>${score}</b></div><div class="stat">❓ الأسئلة<b>${answered}</b></div><div class="stat">✅ الصحيحة<b>${correct}</b></div><div class="stat">❌ الخاطئة<b>${wrong}</b></div><div class="stat">📊 نسبة الصحيحة<b>${pct}%</b></div><div class="stat">❤️ الأرواح المتبقية<b>${Math.max(0,lives)}</b></div>`;
+    showScreen(resultScreen);saveProgress();beep(lives>0?760:130,.25,lives>0?'triangle':'sawtooth');
+  }
+  function loop(t){if(!running)return;const dt=Math.min(.032,(t-last)/1000||0);last=t;update(dt);draw();requestAnimationFrame(loop)}
+  new MutationObserver(()=>{}); // keeps project structure simple for future expansion
+})();
+
+</script>
+</body>
+</html>
